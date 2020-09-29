@@ -1,0 +1,20 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+
+\begin{document}
+
+\begin{tikzpicture}
+  [>=latex, yscale=1.0, font=\footnotesize]
+  \draw [->, thick] (0, 0) -- node [midway, below=12pt] {linear scale} (11, 0);
+  \draw [->, thick] (0, 0) -- node [midway, sloped, above=12pt] {square root scale} (0, 7.5);
+
+  \draw [draw=blue, thick, domain=0:10, samples=400, smooth, variable=\x] plot ({\x}, {sqrt(5*\x)});
+
+  \foreach \x [evaluate=\x as \y using {int(5*\x)}] in {2,4,6,8,10} {
+    \draw [dashed] (\x, 0) node [below, font=\scriptsize] {\y} -- (\x, {sqrt(5*\x)}) -- (0, sqrt{(5*\x)}) node [left, font=\scriptsize] {\y};
+  }
+\end{tikzpicture}
+
+\end{document}
+
